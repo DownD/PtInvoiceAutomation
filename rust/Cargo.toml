@@ -1,8 +1,15 @@
 [package]
-name = "PtInvoiceAutomation"
+name = "pt_invoice_automation"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.70"
+chrono = "0.4.24"
+eframe = "0.21.3"
+egui = "0.21.0"
+egui_extras = "0.21.0"
+log = "0.4.17"
+thiserror = "1.0.40"
