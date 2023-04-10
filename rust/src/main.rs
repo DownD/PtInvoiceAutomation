@@ -4,6 +4,7 @@ use eframe::egui;
 
 pub mod qr_code;
 pub mod invoice;
+pub mod camera;
 mod ui;
 use ui::InvoiceUI;
 
@@ -18,6 +19,6 @@ fn main() -> Result<(), eframe::Error> {
     eframe::run_native(
         "My egui App",
         options,
-        Box::new(|_cc| Box::new(InvoiceUI::default())),
+        Box::new(|_cc| Box::new(InvoiceUI::new())),
     )
 }

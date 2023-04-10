@@ -1,33 +1,44 @@
 use eframe::egui;
-
+use super::camera::Camera;
+use super::camera::OpenCVCamera;
+use egui::ColorImage;
 pub struct InvoiceUI {
-    name: String,
-    age: u32,
+    cam_texture: Option<egui::TextureHandle>,
+    screenshot: Option<ColorImage>,
+    camera: Box<dyn Camera>,
 }
 
-impl Default for InvoiceUI {
-    fn default() -> Self {
+impl InvoiceUI{
+    pub fn new() -> Self {
         Self {
-            name: "Arthur".to_owned(),
-            age: 42,
+            cam_texture: None,
+            screenshot: None,
+            camera:Box::new(OpenCVCamera::new(None).unwrap())
         }
     }
 }
-
 impl eframe::App for InvoiceUI {
+
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading("My egui Application");
-            ui.horizontal(|ui| {
-                let name_label = ui.label("Your name: ");
-                ui.text_edit_singleline(&mut self.name)
-                    .labelled_by(name_label.id);
-            });
-            ui.add(egui::Slider::new(&mut self.age, 0..=120).text("age"));
-            if ui.button("Click each year").clicked() {
-                self.age += 1;
+            self.screenshot = self.camera.get_frame().ok();
+            if let Some(screenshot) = self.screenshot.take() {
+                if self.cam_texture.is_some(){
+                    self.cam_texture.as_mut().unwrap().set(screenshot,Default::default());
+                }else{
+                    self.cam_texture = Some(ui.ctx().load_texture(
+                        "screenshot",
+                        screenshot,
+                        Default::default(),
+                    ));
+                }
             }
-            ui.label(format!("Hello '{}', age {}", self.name, self.age));
+
+            ui.heading("My egui Application");
+            if let Some(texture) = self.cam_texture.as_ref() {
+                ui.image(texture, ui.available_size());
+            }
+            ctx.request_repaint();
         });
     }
 }
