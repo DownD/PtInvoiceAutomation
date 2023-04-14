@@ -14,3 +14,5 @@ share/
 parsed_invoices/
 build/
 dist/
+**/target
+image_data
