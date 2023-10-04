@@ -6,3 +6,9 @@ python/share
 python/include
 rust/target
 image_data
+lib/
+lib64/
+__pycache__/
+*.egg-info/
+share/
+parsed_invoices/
