@@ -9,3 +9,7 @@
 
 
 https://docs.opencv.org/3.4/d6/d6d/tutorial_mat_the_basic_image_container.html
+
+
+
+https://github.com/oschwartz10612/poppler-windows/releases/

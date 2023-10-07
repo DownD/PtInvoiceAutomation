@@ -1,4 +1,6 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from distutils.core import setup
+import py2exe
 
 setup(
     name='invoice_parser',
@@ -10,8 +12,7 @@ setup(
         "opencv-python>=4.7",
         "pandas>=2.0",
         "pdf2image>=1.16",
-        # Add your project's dependencies here
-        # Example: 'requests>=2.0',
+        "openpyxl>=3.0"
     ],
     entry_points={
         'console_scripts': [

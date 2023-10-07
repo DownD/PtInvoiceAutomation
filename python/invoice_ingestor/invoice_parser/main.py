@@ -46,8 +46,6 @@ class QRInvoiceDumper:
         qr_invoices = self.qr_invoice_parser.parse_from_file(filename)
         for qr_invoice in qr_invoices:
             self.__save_qr_invoice(qr_invoice)
-        
-        self.excel_manager.save_file()
 
     def dump_from_local_dir(self, dir : str):
         """
@@ -58,8 +56,6 @@ class QRInvoiceDumper:
         """
         for filename in os.listdir(dir):
             self.dump_from_local_file(os.path.join(dir, filename))
-
-        self.excel_manager.save_file()
 
     def dump_from_camera(self):
         """

@@ -58,17 +58,10 @@ class InvoiceQR(BaseModel):
             return date_obj
         except ValueError:
             raise ValueError("Invalid date format. Please use YYYYMMDD.")
-        
-    def model_dump_pandas_series(self):
-        """
-        Dumps the QR invoice as a pandas series.
-        """
-        return pd.Series(self.dict())
     
     @staticmethod
     def dump_field_names() -> list[str]:
         """
         Dumps the QR invoice field names.
         """
-        schema = InvoiceQR.model_json_schema()
-        return list(schema["$defs"].keys())
+        return list(InvoiceQR.__fields__.keys())
