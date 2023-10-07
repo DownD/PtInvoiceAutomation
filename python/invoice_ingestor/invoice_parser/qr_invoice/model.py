@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field, validator
 from datetime import date, datetime
 from typing import Optional
 import pandas as pd
+from invoice_parser.qr_invoice.language_mapping import PORTUGUESE_MAPPING
 
 class InvoiceQR(BaseModel):
 
@@ -59,6 +60,19 @@ class InvoiceQR(BaseModel):
         except ValueError:
             raise ValueError("Invalid date format. Please use YYYYMMDD.")
     
+    def model_dump_pt(self) -> dict:
+        """
+        Dumps the QR invoice model as a dictionary.
+        """
+        model = self.model_dump()
+        pt_model = {}
+        for key in model.keys():
+            if key in PORTUGUESE_MAPPING.keys():
+                pt_model[PORTUGUESE_MAPPING[key]] = model.pop(key)
+            else:
+                raise ValueError("Could not find mapping for key: " + key)
+        return pt_model
+
     @staticmethod
     def dump_field_names() -> list[str]:
         """

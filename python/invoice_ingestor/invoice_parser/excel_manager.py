@@ -30,7 +30,7 @@ class ExcelManager:
         Args:
             invoice (InvoiceQR): The invoice to add.
         """
-        self.__dataframe.append(invoice.model_dump())
+        self.__dataframe.append(invoice.model_dump_pt())
 
 
     def __del__(self):
