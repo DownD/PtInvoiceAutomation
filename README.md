@@ -5,7 +5,8 @@
 
 
 
-
+## Rust
+Install https://github.com/twistedfall/opencv-rust/blob/master/INSTALL.md
 
 
 https://docs.opencv.org/3.4/d6/d6d/tutorial_mat_the_basic_image_container.html
