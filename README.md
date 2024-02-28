@@ -1,6 +1,6 @@
 # PtInvoiceParser
 
-Starting on January 2022 all invoices in Portugal started to be issued with a QR code that containing [most of the information](https://www.softseguro.pt/Files/ETCODEQR.pdf) of the invoice. 
+Starting on January 2022 all invoices in Portugal started to be issued with a QR code containing [most of the information](https://www.softseguro.pt/Files/ETCODEQR.pdf) of the invoice. 
 
 This projects explores two different ways to parse this invoices. One built with Rust that provides a simple GUI where invoices can be grabbed from the camera or from the screen and another built with Python that parses invoices from a folder, ideal for batch processing.
 
@@ -14,7 +14,7 @@ This application uses OpenCV with 2 threads to grab images from the screen or fr
 In addition to that, it provides a way determine the subset of invoices that best matches a specific values, this can be usefull for Bank reconciliations in the accounting department.
 
 ### Building
-To build the project it might be needed to install OpenCV libraries. Head over to [Rust installation guidelines](https://github.com/twistedfall/opencv-rust/blob/master/INSTALL.md)
+To build the project it might be needed to install OpenCV libraries. Head over to [OpenCV installation guidelines](https://github.com/twistedfall/opencv-rust/blob/master/INSTALL.md)
 
 ## Python Invoice Parser
 This is a command line tool that uses OpenCV to capture images from a specific file or directory, parse any QR codes present, and stores their content as table in an excel sheet that can be later used for analysis.
